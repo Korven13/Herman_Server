@@ -8,7 +8,7 @@ public class Server {
         ServerSocket server = null;
         Socket client;
 
-        int portNumber = 44444;
+        int portNumber = 55555;
 
         if (args.length >= 1) {
             portNumber = Integer.parseInt(args[0]);
@@ -57,5 +57,30 @@ public class Server {
         }
 
     }
+
+
+    private double calculate (String msgFromClient) {
+        double number1;
+        double number2;
+        char operator;
+        
+        if (msgFromClient.contains("+")) {
+            operator = '+';
+        } else if (msgFromClient.contains("-")) {
+            operator = '-';
+        } else if (msgFromClient.contains("*")) {
+            operator = '*';
+        }
+        else if (msgFromClient.contains("/")) {
+            operator = '/';
+        }
+        else {
+            System.out.println("Ogiltigt uttryck");
+        }
+
+
+    }
+
+
 
 }
