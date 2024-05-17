@@ -94,7 +94,19 @@ public class Server {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Ogiltigt uttryck", e);
         }
-        return number1 + number2;
+
+        switch (operator) {
+            case '+':
+                return number1 + number2;
+            case '-':
+                return number1 - number2;
+            case '*':
+                return number1 * number2;
+            case '/':
+                return number1 / number2;
+        }
+
+        return 0;
 
     }
 
