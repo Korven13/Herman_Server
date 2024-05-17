@@ -22,6 +22,11 @@ public class Server {
         }
         System.out.println("ServerSocket is created " + server);
 
+        System.out.println(calculate("4+2"));
+        System.out.println(calculate("13-2"));
+        System.out.println(calculate("3*5"));
+        System.out.println(calculate("27/3"));
+
         while (true) {
             try {
                 System.out.println("Waiting for connect request...");
@@ -35,6 +40,9 @@ public class Server {
                 BufferedReader br = new BufferedReader(new InputStreamReader(clientIn));
                 String msgFromClient = br.readLine();
                 System.out.println("Message recieved from client = " + msgFromClient);
+
+
+
 
                 if (msgFromClient != null && !msgFromClient.equalsIgnoreCase("bye")) {
                     OutputStream clientOut = client.getOutputStream();
@@ -59,10 +67,10 @@ public class Server {
     }
 
 
-    private double calculate (String msgFromClient) {
+    private static double calculate(String msgFromClient) {
         double number1;
         double number2;
-        char operator;
+        char operator=' ';
         
         if (msgFromClient.contains("+")) {
             operator = '+';
@@ -78,6 +86,15 @@ public class Server {
             System.out.println("Ogiltigt uttryck");
         }
 
+        String[] numbers = msgFromClient.split("\\" + operator);
+
+        try {
+            number1 = Double.parseDouble(numbers[0]);
+            number2 = Double.parseDouble(numbers[1]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Ogiltigt uttryck", e);
+        }
+        return number1 + number2;
 
     }
 
