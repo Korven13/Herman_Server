@@ -22,10 +22,6 @@ public class Server {
         }
         System.out.println("ServerSocket is created " + server);
 
-        System.out.println(calculate("4+2"));
-        System.out.println(calculate("13-2"));
-        System.out.println(calculate("3*5"));
-        System.out.println(calculate("27/3"));
 
         while (true) {
             try {
@@ -42,13 +38,11 @@ public class Server {
                 System.out.println("Message recieved from client = " + msgFromClient);
 
 
-
-
                 if (msgFromClient != null && !msgFromClient.equalsIgnoreCase("bye")) {
                     OutputStream clientOut = client.getOutputStream();
                     PrintWriter pw = new PrintWriter(clientOut, true);
                     String ansMsg = "Hello, " + msgFromClient;
-                    pw.println(ansMsg);
+                    pw.println(calculate(msgFromClient));
                 }
 
                 if (msgFromClient != null && msgFromClient.equalsIgnoreCase("bye")) {
